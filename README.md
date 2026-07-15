@@ -40,4 +40,13 @@ Configure Webhook to trigger CI Pipeline automatically on every change
 20. Disable SSL verification (we use unsecure connection with our Jenkins)
 21. Save and push a change to see if all works as expected
 22. If pipeline does not trigger, make sure it ran at least once successfull manually and try to push again.
-23. 
+23. For multibranch pipelines another plugnin is necessary: 'Multibranch Scan Webhook Trigger'. So install it.
+24. After installation in configuration of multibranch pipeline under 'Scan Multibranch Pipeline Triggers'
+    there is a new option 'Scan by webhook' available.
+25. Choose that option and type any name into 'Trigger token' test field
+26. Click on the `?` next to 'Trigger token' and copy the URL shown in the tool tip
+27. Go to settings of GitHub repository and create another webhook
+28. Paste the URL from step 26 into 'URL' field
+29. Replace 'JENKINS_URL' by your actual Jenkins URL and '[Trigger token]' by the token name from step 25
+30. Again disable SSL authentication and save
+31. Make a change in code and push again to see if multibranch pipeline is triggered as expected
