@@ -14,6 +14,9 @@ Configure Webhook to trigger CI Pipeline automatically on every change
 - Configure GitHub access token and connection to Jenkins in GitHub project settings
 - Configure Jenkins to trigger the CI pipeline whenever a change is pushed to GitHub
 
+## Related Repository:
+- [Demo Project](https://github.com/felix-karg/java-maven-app) (Branch `module_8.15-webhooks`)
+
 ## Implementation Steps:
 1. Check if GitHub Plugin in Jenkins is already installed at 'Manage Jenkins' -> 'Plugins' -> 'Installed Plugins'
 2. If not, install the Plugin at 'Available Plugins'
@@ -31,4 +34,10 @@ Configure Webhook to trigger CI Pipeline automatically on every change
 14. Choose 'Secret text' as credential type, paste the token to the 'Secret' field, give a name (ID) and click 'Create'
 15. Back to 'Manage Jenkins' -> 'System' -> 'GitHub' -> 'GitHub Servers' and choose newly created secret
 16. Click 'Test connection' to verify that all works as expected
-17. 
+17. Now we need to configure the hook in the GitHub [demo repository](https://github.com/felix-karg/java-maven-app)
+18. In repository settings go to 'Webhooks' and click 'Add webhook'
+19. Set `http://<jenkins-url>:8080/github-webhook/` (the endpoint with trailing slash is important!)
+20. Disable SSL verification (we use unsecure connection with our Jenkins)
+21. Save and push a change to see if all works as expected
+22. If pipeline does not trigger, make sure it ran at least once successfull manually and try to push again.
+23. 
